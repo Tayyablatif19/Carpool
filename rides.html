@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Available Rides</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">NUST CAR-POOL</div>
+
+  <div class="menu-toggle" id="menuToggle">
+    <span></span><span></span><span></span>
+  </div>
+
+  <ul id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="post.html" id="postNav">Post a Ride</a></li>
+    <li><a href="rides.html">Available Rides</a></li>
+    <li><a href="myrides.html" id="myRidesNav">My Rides</a></li>
+    <li><a href="#" id="authLink">Login</a></li>
+  </ul>
+</nav>
+
+<main class="rides-section">
+  <h2 class="heading-box">Available Rides</h2>
+  <div id="ride-list" class="ride-container">
+    <!-- Ride cards will be inserted here by JS -->
+  </div>
+</main>
+
+<!-- Join Ride Popup -->
+<div id="joinPopup" class="join-popup hidden">
+  <div class="popup-content">
+    <h2>Join Ride</h2>
+    <form id="joinForm">
+      <label for="passengerName">Your Name</label>
+      <input type="text" id="passengerName" required>
+      <label for="passengerContact">Contact Info</label>
+      <input type="text" id="passengerContact" required>
+      <button type="submit" class="join-btn">Confirm Join</button>
+      <button type="button" id="closePopup" class="cancel-btn">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script type="module" src="rides.js"></script>
+<script type="module" src="logout.js"></script>
+<script type="module" src="auth-check.js"></script>
+
+<script>
+  // Navbar mobile toggle
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("active");
+    });
+  });
+</script>
+
+</body>
+</html>

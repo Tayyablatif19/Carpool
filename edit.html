@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Ride</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script type="module" src="edit.js" defer></script>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">NUST CAR-POOL</div>
+    <div class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="post.html">Post a Ride</a></li>
+      <li><a href="rides.html">Available Rides</a></li>
+      <li><a href="myrides.html">My Rides</a></li>
+      <li><a href="#" id="logoutLink">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main class="rides-section">
+    <form id="editForm" class="ride-form">
+      <h2>Edit Ride</h2>
+
+      <label for="driverName">Your Name</label>
+      <input type="text" id="driverName" required>
+
+      <label for="driverContact">Contact Info</label>
+      <input type="text" id="driverContact" required>
+
+      <label for="department">Department</label>
+      <input type="text" id="department" required>
+
+      <label for="batch">Batch</label>
+      <input type="text" id="batch" required>
+
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="prefer not to say">Prefer not to say</option>
+        <option value="alligator">Alligator</option>
+      </select>
+
+      <label for="from">From</label>
+      <input type="text" id="from" required>
+
+      <label for="to">To</label>
+      <input type="text" id="to" required>
+
+      <label for="date">Date</label>
+      <input type="date" id="date" required>
+
+      <label for="time">Time</label>
+      <input type="time" id="time" required>
+
+      <label for="seats">Available Seats</label>
+      <input type="number" id="seats" min="1" required>
+
+      <label for="price">Price (or "Free")</label>
+      <input type="text" id="price" required>
+
+      <button type="submit" class="join-btn">Update Ride</button>
+    </form>
+  </main>
+
+  <script type="module" src="logout.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("menuToggle").addEventListener("click", () => {
+        document.getElementById("navLinks").classList.toggle("active");
+      });
+    });
+  </script>
+
+</body>
+</html>

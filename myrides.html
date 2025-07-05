@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Rides</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="assets/favicon.png" />
+</head>
+<body>
+
+  <!-- 🚗 Navbar -->
+  <nav>
+    <div class="logo">NUST CAR-POOL</div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </div>
+
+    <ul id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="post.html">Post a Ride</a></li>
+      <li><a href="rides.html">Available Rides</a></li>
+      <li><a href="myrides.html">My Rides</a></li>
+      <li><a href="#" id="authLink">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- 📋 Main Section -->
+  <main class="rides-section">
+    
+
+    <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 1rem;">
+      <button id="postedBtn" class="join-btn">🚗 Rides I’ve Posted</button>
+      <button id="joinedBtn" class="join-btn">🧍‍♂️ Rides I’ve Joined</button>
+    </div>
+
+    <!-- ✅ Message Area for Feedback -->
+    <div id="message" class="auth-message hidden"></div>
+
+    <!-- 🔽 Ride Lists -->
+    <div id="posted-rides" class="ride-container"></div>
+    <div id="joined-rides" class="ride-container hidden"></div>
+  </main>
+
+  <!-- 🔐 Auth & Ride Logic -->
+  <script type="module" src="myrides.js"></script>
+  <script type="module" src="logout.js"></script>
+  <script type="module" src="auth-check.js"></script>
+
+  <!-- 📱 Navbar & Section Toggle -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleBtn = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      toggleBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      const postedBtn = document.getElementById("postedBtn");
+      const joinedBtn = document.getElementById("joinedBtn");
+      const postedContainer = document.getElementById("posted-rides");
+      const joinedContainer = document.getElementById("joined-rides");
+      const message = document.getElementById("message");
+
+      postedBtn.addEventListener("click", () => {
+        postedContainer.classList.remove("hidden");
+        joinedContainer.classList.add("hidden");
+        message.classList.add("hidden");
+        message.innerText = "";
+      });
+
+      joinedBtn.addEventListener("click", () => {
+        joinedContainer.classList.remove("hidden");
+        postedContainer.classList.add("hidden");
+        message.classList.add("hidden");
+        message.innerText = "";
+      });
+    });
+  </script>
+
+</body>
+</html>

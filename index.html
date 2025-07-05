@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carpool - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  
+</head>
+<body>
+
+<nav>
+  <div class="logo">NUST CAR-POOL</div>
+
+  <div class="menu-toggle" id="menuToggle">
+    <span></span><span></span><span></span>
+  </div>
+
+  <ul id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#" id="postRideLink">Post a Ride</a></li>
+    <li><a href="rides.html">Available Rides</a></li>
+    <li><a href="#" id="myRidesLink">My Rides</a></li>
+    <li><a href="#" id="authLink">Login</a></li>
+  </ul>
+</nav>
+
+<section class="app-hero">
+  <div class="hero-left">
+    <h2>Let’s take the hassle<br />out of daily commute.</h2>
+    <p>
+      Carpool connects students heading in the same direction, making commuting affordable, sustainable, and social.
+    </p>
+    <div class="hero-buttons">
+      <a href="#" class="cta-button" id="ctaPostRide">🚗 Post a Ride</a>
+      <a href="rides.html" class="cta-button">🧑‍🤝‍🧑 View Rides</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img src="assets/hero-car.jpg" alt="Carpool App" />
+  </div>
+</section>
+
+<section class="features-section">
+  <h2 class="feature-heading">Forget about surplus charges</h2>
+  <p class="feature-subheading">
+    NUST Car-Pool is a university ride-sharing platform that helps NUST students easily offer or join rides within the campus or nearby areas. Students can post available seats, join rides and connect securely—all in one place. It’s a simple, efficient, and student-first way to save money, reduce traffic, and build community.
+  </p>
+
+  <div class="feature-cards">
+    <div class="feature-card">
+      <img src="assets/form.jpg" alt="Easy" />
+      <h3>Post</h3>
+      <p>Share your ride in seconds. Fill out a quick form with pickup, destination, and seats — that's it.</p>
+    </div>
+    <div class="feature-card">
+      <img src="assets/find.jpg" alt="Safe" />
+      <h3>Pick</h3>
+      <p>Find a ride that fits. Browse posted rides, view driver info, and choose what works best for your time and route.</p>
+    </div>
+    <div class="feature-card">
+      <img src="assets/ride.jpg" alt="Reliable" />
+      <h3>Pair</h3>
+      <p>Join and confirm instantly. With just one tap, you're paired and ready to go — safely and smoothly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Firebase Auth Logic -->
+<script type="module">
+  import { auth } from "./firebase.js";
+  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const postRideLink = document.getElementById("postRideLink");
+  const myRidesLink = document.getElementById("myRidesLink");
+  const ctaPostRide = document.getElementById("ctaPostRide");
+  const authLink = document.getElementById("authLink");
+
+  let currentUser = null;
+
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+
+    if (user) {
+      authLink.textContent = "Logout";
+      authLink.addEventListener("click", async (e) => {
+        e.preventDefault();
+        try {
+          await signOut(auth);
+          alert("Logged out successfully!");
+          window.location.reload();
+        } catch (err) {
+          alert("Logout failed: " + err.message);
+        }
+      });
+    } else {
+      authLink.textContent = "Login";
+      authLink.setAttribute("href", "login.html");
+    }
+  });
+
+  postRideLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = currentUser ? "post.html" : "login.html";
+  });
+
+  ctaPostRide.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = currentUser ? "post.html" : "login.html";
+  });
+
+  myRidesLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = currentUser ? "myrides.html" : "login.html";
+  });
+</script>
+
+<!-- Mobile Menu Toggle -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("active");
+    });
+  });
+</script>
+
+</body>
+</html>

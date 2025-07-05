@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - UniCarpool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Optional Navbar (you can remove if you want minimal signup page) -->
+  <nav>
+    <div class="logo">NUST CAR-POOL</div>
+    <div class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+  
+  <main class="rides-section">
+    <form id="signupForm" class="ride-form">
+      <h2>Create Your Account</h2>
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required />
+
+      <button type="submit" class="join-btn">Sign Up</button>
+    </form>
+
+    <p style="text-align:center; margin-top: 1rem;">
+      Already have an account? <a href="login.html">Log in here</a>.
+    </p>
+  </main>
+
+  <!-- Script for Signup Logic -->
+  <script type="module" src="signup.js"></script>
+
+  <!-- Mobile Navbar Toggle Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleBtn = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      if (toggleBtn && navLinks) {
+        toggleBtn.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

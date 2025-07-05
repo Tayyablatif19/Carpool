@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post a Ride</title>
+  <link rel="stylesheet" href="style.css" />
+
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-o9N1j7kCbs3t3pLMibK5n/fbvevFLR1gmbQ4Fk1n5Yc="
+  crossorigin=""
+/>
+
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-QV1M6tL+Q2LdPBLVsLE6f5Zm0bmKejAc+VKvFf38z+Y="
+  crossorigin=""
+></script>
+
+
+</head>
+<body>
+
+<nav>
+  <div class="logo">NUST CAR-POOL</div>
+
+  <div class="menu-toggle" id="menuToggle">
+    <span></span><span></span><span></span>
+  </div>
+
+  <ul id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="post.html">Post a Ride</a></li>
+    <li><a href="rides.html">Available Rides</a></li>
+    <li><a href="myrides.html">My Rides</a></li>
+    <li><a href="#" id="logoutLink">Logout</a></li>
+  </ul>
+</nav>
+
+<form class="ride-card-form" id="rideForm">
+  <h2>🚗 Post a Ride</h2>
+  
+  <div class="card-fields">
+    <div class="field-pair">
+      <label for="driverName">Full Name</label>
+      <input type="text" id="driverName" placeholder="e.g. Ali Khan" required>
+    </div>
+
+    <div class="field-pair">
+      <label for="driverContact">Contact Info</label>
+      <input type="text" id="driverContact" placeholder="WhatsApp No." required>
+    </div>
+
+    <div class="field-pair">
+      <label for="department">Department</label>
+      <input type="text" id="department" placeholder="e.g. SEECS, NBS, S3H" required>
+    </div>
+
+    <div class="field-pair">
+      <label for="batch">Batch</label>
+      <input type="text" id="batch" placeholder="e.g. 2021" required>
+    </div>
+
+    <div class="field-pair">
+      <label for="seats">Available Seats</label>
+      <input type="number" id="seats" min="1" placeholder="e.g. 3" required>
+    </div>
+
+    <div class="field-pair">
+      <label for="from">From</label>
+      <input type="text" id="from" placeholder="Pickup location" required>
+    </div>
+
+    <div class="field-pair">
+      <label for="to">To</label>
+      <input type="text" id="to" placeholder="Drop-off location" required>
+    </div>
+
+    <div class="field-pair">
+      <label for="time">Pickup Time</label>
+      <input type="time" id="time" required>
+    </div>
+
+    <div class="field-pair">
+      <label for="date">Date</label>
+      <input type="date" id="date" required>
+    </div>
+
+    <div class="field-pair">
+      <label for="price">Price</label>
+      <input type="text" id="price" placeholder="e.g. 100 PKR or Free" required>
+    </div>
+  </div>
+
+  <!-- Optional gender (used in JS) -->
+  <select id="gender" hidden>
+    <option value="prefer_not_to_say" selected>Prefer not to say</option>
+  </select>
+
+  <button type="submit" class="join-btn">➕ Post Ride</button>
+</form>
+
+
+
+
+<!-- Auth Redirect -->
+<script type="module">
+  import { auth } from "./firebase.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+</script>
+
+<!-- Script Dependencies -->
+<script type="module" src="post.js"></script>
+<script type="module" src="logout.js"></script>
+
+<!-- Mobile Nav Toggle -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("active");
+    });
+  });
+</script>
+
+</body>
+</html>
