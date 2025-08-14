@@ -39,35 +39,6 @@ We treated this project as a **JS laboratory** – testing, refining, and perfec
 
 This wasn’t “just building an app” – it was **forging raw JS skill**.
 
----
-
-## 📊 Architecture Flow
-
-```mermaid
-flowchart TD
-    A[User Lands on Site] --> B{Logged In?}
-    B -- No --> C[Public Pages Accessible]
-    B -- Yes --> D[Post/Join Ride Pages]
-    D --> E[User Posts Ride]
-    D --> F[User Joins Ride]
-    E --> G[Ride Appears in 'My Rides - Posted']
-    F --> H[Ride Appears in 'My Rides - Joined']
-    G --> I[Contact Cards Updated in Real-Time]
-    H --> I
-
-
----
-
-sequenceDiagram
-    participant User
-    participant CarpoolApp
-    participant Database(LocalStorage)
-    User->>CarpoolApp: Post Ride Details
-    CarpoolApp->>Database(LocalStorage): Save Ride Data
-    User->>CarpoolApp: Join Ride
-    CarpoolApp->>Database(LocalStorage): Update Ride with Joiner Info
-    Database(LocalStorage)->>CarpoolApp: Send Updated Ride List
-    CarpoolApp->>User: Display Updated Rides
 
 ---
 
